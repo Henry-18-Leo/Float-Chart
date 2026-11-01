@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FloatChat – Front-end Mockup</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<style>
+:root{--bg:#e9f2f1;--panel:#fff;--ink:#0b2a3c;--mute:#52707d;--line:#c5d9d8;--teal:#0f7c8a;--float:#e8602c;--deep:#0b2a3c;--on-deep:#e9f2f1;--land:#cfdcc9;--sea:#d7ebee;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#071a24;--panel:#0d2b3a;--ink:#e3f0ef;--mute:#8fb0b8;--line:#1e4455;--teal:#3fc1cf;--float:#ff7a45;--deep:#04121a;--on-deep:#e3f0ef;--land:#17392f;--sea:#0a2431}}
+:root[data-theme="dark"]{--bg:#071a24;--panel:#0d2b3a;--ink:#e3f0ef;--mute:#8fb0b8;--line:#1e4455;--teal:#3fc1cf;--float:#ff7a45;--deep:#04121a;--on-deep:#e3f0ef;--land:#17392f;--sea:#0a2431}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.55 "IBM Plex Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;margin:0;line-height:1.15}
+header{background:var(--deep);color:var(--on-deep);display:flex;align-items:center;gap:24px;padding:12px 24px;flex-wrap:wrap;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.logo{font:700 20px "Bricolage Grotesque",sans-serif;display:flex;align-items:center;gap:8px}
+.logo i{width:12px;height:12px;border-radius:50%;background:var(--float);display:inline-block;box-shadow:0 0 0 4px rgba(232,96,44,.3)}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav button{background:none;border:0;color:inherit;font:inherit;padding:6px 12px;border-radius:6px;cursor:pointer;opacity:.75}
+nav button:hover{opacity:1}
+nav button[aria-selected=true]{background:rgba(255,255,255,.14);opacity:1}
+button:focus-visible,input:focus-visible{outline:2px solid var(--float);outline-offset:2px}
+main{max-width:1080px;margin:0 auto;padding:24px}
+section{display:none}section.on{display:block}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center;padding:24px 0}
+.hero h1{font-size:clamp(30px,5vw,48px);margin-bottom:14px}
+.hero p{color:var(--mute);max-width:46ch;margin:0 0 20px}
+.btn{background:var(--float);color:#fff;border:0;border-radius:8px;padding:11px 20px;font:500 15px inherit;font-family:inherit;cursor:pointer}
+.btn.alt{background:none;color:var(--ink);border:1px solid var(--line);margin-left:8px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.grid3 .card h3{font-size:17px;margin-bottom:6px}.grid3 .card p{margin:0;color:var(--mute);font-size:14px}
+.stats{display:flex;gap:28px;margin-top:20px;flex-wrap:wrap;color:var(--mute);font-size:13px}.stats b{display:block;color:var(--ink);font:700 22px "Bricolage Grotesque",sans-serif}
+h2{font-size:26px;margin-bottom:4px}.sub{color:var(--mute);margin:0 0 16px}
+.chat{display:flex;flex-direction:column;height:520px}
+.msgs{flex:1;overflow:auto;display:flex;flex-direction:column;gap:12px;padding-bottom:8px}
+.m{max-width:80%;padding:10px 14px;border-radius:12px}
+.m.u{align-self:flex-end;background:var(--deep);color:var(--on-deep)}
+.m.b{align-self:flex-start;background:var(--sea)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.chips button{background:var(--panel);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer}
+.chips button:hover{border-color:var(--teal)}
+.inp{display:flex;gap:8px}.inp input{flex:1;padding:11px 14px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);font:inherit}
+.row{display:grid;grid-template-columns:1fr 280px;gap:16px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.filters label{font-size:13px;color:var(--mute);display:flex;flex-direction:column;gap:3px}
+select{padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);font:inherit}
+.map{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);background:var(--sea);display:block}
+.fl{cursor:pointer}.fl circle{fill:var(--float);stroke:#fff;stroke-width:1.5}.fl.sel circle{r:8;stroke:var(--ink)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14px;margin:10px 0 0}.kv dt{color:var(--mute)}.kv dd{margin:0;font-weight:500}
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tabs button{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:6px 14px;border-radius:6px;font:inherit;cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--teal);color:#fff;border-color:var(--teal)}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+svg text{fill:var(--mute);font:12px "IBM Plex Sans",sans-serif}
+svg text.val{fill:var(--ink);font-weight:500;font-size:12.5px}
+table.mini{min-width:0}.mini th,.mini td{padding:6px 10px}.mini td.hl{font-weight:700;color:var(--ink)}
+.wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:14px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}th{color:var(--mute);font-weight:500}
+.about{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.about p{margin:6px 0 0;color:var(--mute)}
+.note{margin-top:28px;text-align:center;color:var(--mute);font-size:12px}
+@media (max-width:760px){.row{grid-template-columns:1fr 210px}.hero{gap:18px}.charts{grid-template-columns:1fr}.grid3{gap:10px}.grid3 .card{padding:12px}main{padding:16px}header{padding:10px 14px}}
+@media (max-width:480px){.hero,.row,.charts,.about,.grid3,.lhero,.steps,.roles{grid-template-columns:1fr}}
+.off{display:none!important}
+.badge{font-size:12px;background:rgba(255,255,255,.14);padding:4px 10px;border-radius:999px}
+.lg{max-width:880px;margin:16px auto}
+.lhero{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:center;margin-bottom:20px}
+.dive{animation:dive 7s ease-in-out infinite}
+@keyframes dive{0%,100%{transform:translateY(8px)}50%{transform:translateY(150px)}}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.steps .card h3{font-size:17px;margin-bottom:6px}.steps .card p{margin:0;color:var(--mute);font-size:14px}
+@media (prefers-reduced-motion:reduce){.dive{animation:none}}
+.roles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.role{text-align:left;background:var(--panel);border:2px solid var(--line);border-radius:10px;padding:14px;color:var(--ink);font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:4px}
+.role b{font:700 18px "Bricolage Grotesque",sans-serif}.role span{font-size:13px;color:var(--mute)}
+.role:hover,.role[aria-pressed=true]{border-color:var(--float)}
+.rolepanel{background:var(--deep);color:var(--on-deep);border:1px solid var(--line);border-radius:14px;padding:22px;margin:8px 0 22px}
+.rolepanel .roles{margin:0}.rolepanel .role{padding:18px}
+.role svg{color:var(--float)}
+.role em{font-style:normal;font-weight:500;color:var(--float);font-size:14px;margin-top:6px}
+.lgf{display:flex;flex-direction:column;gap:12px}.lgf label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--mute)}
+.lgf input{padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);font:inherit}
+.lgf .small{margin:0;font-size:12px;color:var(--mute)}
+.strip{border-left:4px solid var(--float);margin-top:4px}
+.tbtn{margin-left:auto;background:none;border:1px solid rgba(255,255,255,.35);color:inherit;border-radius:999px;padding:5px 12px;font:inherit;font-size:13px;cursor:pointer}
+.fl circle{transition:cx .6s,cy .6s}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><i></i>FloatChat <span style="font:400 12px 'IBM Plex Sans',sans-serif;opacity:.7">by Night Furies</span></div>
+  <nav id="nav" role="tablist" class="off"></nav><span id="badge" class="badge off"></span><button id="themebtn" class="tbtn" onclick="theme()">Night Furies mode</button><button id="outbtn" class="tbtn off" style="margin-left:0" onclick="logout()">Log out</button>
+</header>
+<main>
+
+<section id="login" class="on">
+  <div class="lg">
+    <div class="lhero">
+      <div>
+        <h1 style="font-size:clamp(30px,5vw,44px);margin-bottom:10px">Welcome to FloatChat</h1>
+        <p class="sub" style="max-width:44ch">Ask the ocean a question. Pick how you want to explore data from ARGO floats.</p>
+        <div class="stats"><div><b>4,000+</b>floats worldwide</div><div><b>10 days</b>per dive cycle</div><div><b>2,000 m</b>max depth</div></div>
+      </div>
+      <svg viewBox="0 0 260 220" class="map" role="img" aria-label="Animated float diving and rising">
+        <rect width="260" height="220" fill="var(--sea)"/>
+        <rect width="260" height="34" fill="var(--panel)" opacity=".6"/>
+        <line x1="130" y1="34" x2="130" y2="210" stroke="var(--line)" stroke-dasharray="3 5"/>
+        <g class="dive"><rect x="119" y="4" width="22" height="40" rx="11" fill="var(--float)"/><rect x="126" y="-6" width="8" height="12" fill="var(--ink)"/></g>
+        <text x="152" y="26">Surface</text><text x="152" y="112">1,000 m</text><text x="152" y="206">2,000 m</text>
+      </svg>
+    </div>
+    <div class="rolepanel"><h2 style="color:var(--on-deep);font-size:22px;margin-bottom:4px">Choose your role to continue</h2><p style="margin:0 0 14px;color:#9fc3cb;font-size:14px">Tap one card. You can switch any time with Log out.</p>
+    <div class="roles" id="roles">
+      <button class="role" data-r="sci" aria-pressed="false"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7.5 15h9"/></svg><b>Scientist</b><span>Research work: compare floats, full technical answers, NetCDF export</span><em>Enter as Scientist</em></button>
+      <button class="role" data-r="stu" aria-pressed="false"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/><path d="M22 9v6"/></svg><b>Student</b><span>Learning work: simple answers, guided questions, ARGO guide</span><em>Enter as Student</em></button>
+    </div>
+    </div>
+    <div class="steps">
+      <div class="card"><h3>1. Ask</h3><p>Type a question in plain English, like "salinity near the equator in March 2023".</p></div>
+      <div class="card"><h3>2. Explore</h3><p>See floats on the map, press Play, and open depth charts.</p></div>
+      <div class="card"><h3>3. Download</h3><p>Save the readings as CSV, or as NetCDF if you are a scientist.</p></div>
+    </div>
+    <div class="card strip" style="margin-top:16px"><b>Did you know?</b> A float dives to 2,000 m every 10 days. About 4,000 of them cover the world's oceans.</div>
+  </div>
+</section>
+
+<section id="home">
+  <div class="card strip"><span id="hello" style="font-weight:700"></span> <span id="strip"></span></div>
+  <div class="hero">
+    <div>
+      <h1>Ask the ocean a question.</h1>
+      <p>FloatChat turns ARGO float data into maps and charts you can explore by simply typing what you want to know.</p>
+      <button class="btn" onclick="go('chat')">Start exploring</button><button class="btn alt" onclick="go('about')">What are ARGO floats?</button>
+      <div class="stats"><div><b>4,000+</b>floats worldwide</div><div><b>10 days</b>per dive cycle</div><div><b>2,000 m</b>max depth</div></div>
+    </div>
+    <svg viewBox="0 0 320 300" class="map" role="img" aria-label="A float rising from deep water">
+      <rect width="320" height="300" fill="var(--sea)"/>
+      <line x1="0" y1="60" x2="320" y2="60" stroke="var(--line)"/>
+      <g stroke="var(--line)" stroke-dasharray="3 5"><line x1="160" y1="60" x2="160" y2="280"/></g>
+      <rect x="148" y="40" width="24" height="44" rx="12" fill="var(--float)"/><rect x="156" y="28" width="8" height="14" fill="var(--ink)"/>
+      <text x="180" y="52">Surface: sends data</text>
+      <text x="180" y="150">Drifts at 1,000 m</text>
+      <text x="180" y="270">Dives to 2,000 m</text>
+      <circle cx="160" cy="150" r="5" fill="var(--teal)"/><circle cx="160" cy="268" r="5" fill="var(--teal)"/>
+    </svg>
+  </div>
+  <div class="grid3">
+    <div class="card"><h3>Chat</h3><p>Ask in plain English, like "salinity near the equator in March 2023".</p></div>
+    <div class="card"><h3>Map</h3><p>See where floats are and filter by region, date and measurement.</p></div>
+    <div class="card"><h3>Charts and data</h3><p>Compare depth profiles and download the numbers as CSV.</p></div>
+  </div>
+</section>
+
+<section id="chat">
+  <h2>Chat</h2><p class="sub">Ask a question about ocean temperature, salinity or float locations.</p>
+  <div class="card chat">
+    <div class="msgs" id="msgs">
+      <div class="m b">Hi! I can find ARGO float data for you. Try one of the questions below.</div>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="inp"><input id="q" placeholder="Ask about floats, e.g. temperature in the Bay of Bengal" aria-label="Your question"><button class="btn" onclick="send()">Send</button></div>
+  </div>
+</section>
+
+<section id="map">
+  <h2>Float map</h2><p class="sub">Select a float to see its latest reading.</p>
+  <div class="filters">
+    <label>Region<select><option>Indian Ocean</option><option>Bay of Bengal</option><option>Arabian Sea</option></select></label>
+    <label>Date<select><option>Mar 2023</option><option>Apr 2023</option><option>May 2023</option></select></label>
+    <label>Measure<select><option>Temperature</option><option>Salinity</option></select></label>
+  </div>
+  <div class="card" style="display:flex;align-items:center;gap:12px;margin-bottom:12px;padding:10px 14px"><button class="btn" id="play" onclick="playMap()">Play</button><input type="range" id="mo" min="0" max="5" value="2" style="flex:1" aria-label="Month" oninput="setMonth(+this.value)"><b id="molbl" style="min-width:84px;text-align:right">Mar 2023</b></div>
+  <div class="row">
+    <svg class="map" viewBox="0 0 600 360" role="img" aria-label="Map of float positions in the Indian Ocean">
+      <g stroke="var(--line)" stroke-width="1"><path d="M0 90H600M0 180H600M0 270H600M150 0V360M300 0V360M450 0V360"/></g>
+      <g fill="var(--land)" stroke="var(--line)"><path d="M0 0H210L235 40 285 95 300 130 270 175 250 230 215 270 200 330 170 360H0Z"/><path d="M505 360L520 300 570 280 600 290V360Z"/><path d="M360 0H600V40L540 50 480 40Z"/></g>
+      <text x="262" y="24">India</text><text x="40" y="180">Africa</text><text x="530" y="335">Australia</text>
+      <g id="floats"></g>
+    </svg>
+    <div class="card" id="fcard"></div>
+  </div>
+</section>
+
+<section id="charts">
+  <h2>Charts</h2><p class="sub">Profile of the selected float. Every point shows its value, and the tables below list the same numbers.</p>
+  <div class="tabs"><button aria-pressed="true" data-m="t">Temperature</button><button aria-pressed="false" data-m="s">Salinity</button><button aria-pressed="false" data-m="p">Pressure</button></div>
+  <div class="charts">
+    <div class="card"><h3 id="ptl" style="font-size:16px;margin-bottom:8px">Depth profile</h3><svg id="prof" viewBox="0 0 380 320" width="100%"></svg></div>
+    <div class="card"><h3 id="ttl" style="font-size:16px;margin-bottom:8px">Surface trend, Jan to Jun 2023</h3><svg id="trend" viewBox="0 0 380 320" width="100%"></svg></div>
+  </div>
+  <div class="charts" style="margin-top:16px">
+    <div class="card"><h3 style="font-size:16px;margin-bottom:8px">Depth readings</h3><div class="wrap"><table class="mini"><thead><tr><th>Depth (m)</th><th>Pressure (dbar)</th><th>Temp (°C)</th><th>Salinity (PSU)</th></tr></thead><tbody id="tprof"></tbody></table></div></div>
+    <div class="card"><h3 style="font-size:16px;margin-bottom:8px">Monthly surface readings</h3><div class="wrap"><table class="mini"><thead><tr><th>Month</th><th>Temp (°C)</th><th>Salinity (PSU)</th></tr></thead><tbody id="ttrend"></tbody></table></div></div>
+  </div>
+</section>
+
+<section id="data">
+  <h2>Data</h2><p class="sub">Sample readings. Sample values only, shown for the mockup.</p>
+  <div class="card"><div class="wrap"><table>
+    <thead><tr><th>Float ID</th><th>Date</th><th>Lat</th><th>Lon</th><th>Depth (m)</th><th>Pressure (dbar)</th><th>Temp (°C)</th><th>Salinity (PSU)</th></tr></thead>
+    <tbody id="tb"></tbody></table></div>
+    <p style="margin:14px 0 0"><button class="btn" onclick="this.textContent='Downloaded (demo)'">Download CSV</button><button class="btn alt" id="nc">Download NetCDF</button></p>
+  </div>
+</section>
+
+<section id="about">
+  <h2>About ARGO floats</h2><p class="sub">A short guide for first-time users.</p>
+  <div class="about">
+    <div class="card"><h3>What is a float?</h3><p>A small robot that drifts in the ocean, dives to 2,000 m every 10 days and measures temperature and salinity on the way up.</p></div>
+    <div class="card"><h3>Why does it matter?</h3><p>The data helps track climate change, monsoons and cyclones.</p></div>
+    <div class="card"><h3>How to use FloatChat</h3><p>Type a question in Chat, then open Map or Charts to explore the result.</p></div>
+    <div class="card"><h3>Where is the data from?</h3><p>The mockup uses sample values. The real version will connect to ARGO data through the backend.</p></div>
+  </div>
+</section>
+
+<p class="note">Team Night Furies: front-end mockup with sample data</p>
+</main>
+<script>
+var pages=[["home","Home"],["chat","Chat"],["map","Map"],["charts","Charts"],["data","Data"],["about","About"]];
+var nav=document.getElementById("nav");
+pages.forEach(function(p){var b=document.createElement("button");b.textContent=p[1];b.setAttribute("role","tab");b.dataset.p=p[0];b.onclick=function(){go(p[0])};nav.appendChild(b)});
+function go(id){document.querySelectorAll("section").forEach(function(s){s.classList.toggle("on",s.id===id)});nav.querySelectorAll("button").forEach(function(b){b.setAttribute("aria-selected",b.dataset.p===id)});window.scrollTo(0,0)}
+go("login");
+
+var qs=["Show salinity near the equator in March 2023","Compare temperature of two floats","Where are floats in the Bay of Bengal?"];
+var ans=["Found 12 floats near the equator in March 2023. Average surface salinity was 34.9 PSU. Open the Charts page to see the depth profile.","Float 2902 is warmer at the surface (28.4 °C) than float 2915 (27.1 °C). Both cool quickly below 200 m.","There are 8 active floats in the Bay of Bengal. Open the Map page to see their positions."];
+var ans2=["The sea near the equator was fairly salty in March 2023. Rainy areas have less salt because rain dilutes the water. Open Charts to see how it changes as you go deeper.","Float 2902 found warmer surface water than float 2915. Warm water can feed more evaporation, which often means more rain.","8 floats are drifting in the Bay of Bengal. Think of each one as a small robot weather station for the sea. Open Map to find them."],lvl=0;
+function theme(){var r=document.documentElement,d=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;r.dataset.theme=d?"light":"dark";document.getElementById("themebtn").textContent=d?"Night Furies mode":"Day mode"}
+var msgs=document.getElementById("msgs");
+function add(t,c){var d=document.createElement("div");d.className="m "+c;d.textContent=t;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight}
+function ask(t,a){add(t,"u");setTimeout(function(){add(a,"b")},400)}
+qs.forEach(function(q,i){var b=document.createElement("button");b.textContent=q;b.onclick=function(){ask(q,(lvl?ans2:ans)[i])};document.getElementById("chips").appendChild(b)});
+function send(){var i=document.getElementById("q");if(!i.value.trim())return;ask(i.value,"In the full version, the answer to this will appear here with a map and chart.");i.value=""}
+document.getElementById("q").addEventListener("keydown",function(e){if(e.key==="Enter")send()});
+
+var F=[{id:"2902",x:330,y:200,lat:"4.2°N",lon:"78.1°E",d:"12 Mar 2023",t:28.4,s:34.9},{id:"2915",x:410,y:250,lat:"6.5°S",lon:"88.4°E",d:"14 Mar 2023",t:27.1,s:35.2},{id:"2931",x:330,y:120,lat:"14.0°N",lon:"85.0°E",d:"09 Mar 2023",t:28.9,s:33.8},{id:"2944",x:260,y:290,lat:"18.0°S",lon:"60.5°E",d:"20 Mar 2023",t:25.6,s:35.4},{id:"2957",x:470,y:150,lat:"8.7°N",lon:"96.2°E",d:"18 Mar 2023",t:29.0,s:33.5}];
+var g=document.getElementById("floats"),ns="http://www.w3.org/2000/svg";
+function pick(f){document.querySelectorAll(".fl").forEach(function(n){n.classList.toggle("sel",n.dataset.id===f.id)});
+document.getElementById("fcard").innerHTML='<h3>Float '+f.id+'</h3><dl class="kv"><dt>Position</dt><dd>'+f.lat+', '+f.lon+'</dd><dt>Date</dt><dd>'+f.d+'</dd><dt>Surface temp</dt><dd>'+f.t+' °C</dd><dt>Salinity</dt><dd>'+f.s+' PSU</dd></dl><p style="margin:14px 0 0"><button class="btn" onclick="go(\'charts\')">View charts</button></p>'}
+F.forEach(function(f){var e=document.createElementNS(ns,"g");e.setAttribute("class","fl");e.dataset.id=f.id;e.setAttribute("tabindex","0");e.setAttribute("role","button");e.setAttribute("aria-label","Float "+f.id);
+e.innerHTML='<circle cx="'+f.x+'" cy="'+f.y+'" r="6"/>';e.onclick=function(){pick(f)};e.onkeydown=function(ev){if(ev.key==="Enter")pick(f)};g.appendChild(e)});
+pick(F[0]);
+
+var role="sci";
+document.querySelectorAll("#roles .role").forEach(function(b){b.onclick=function(){role=b.dataset.r;login()}});
+function login(){var sci=role==="sci";lvl=sci?0:1;
+document.getElementById("badge").textContent=sci?"Scientist | Research mode":"Student | Learning mode";
+["nav","badge","outbtn"].forEach(function(i){document.getElementById(i).classList.remove("off")});
+document.getElementById("strip").textContent=sci?"Research workspace: compare floats, read full technical answers and export NetCDF files.":"Learning space: get simple explanations, try guided questions and read the ARGO guide.";
+document.getElementById("nc").classList.toggle("off",!sci);
+document.getElementById("hello").textContent=sci?"Welcome, scientist!":"Welcome, student!";
+go("home")}
+function logout(){["nav","badge","outbtn"].forEach(function(i){document.getElementById(i).classList.add("off")});go("login")}
+var MO=["Jan 2023","Feb 2023","Mar 2023","Apr 2023","May 2023","Jun 2023"],DR=[[6,-3],[-5,4],[4,5],[7,-2],[-6,-4]],timer=null;
+function setMonth(m){document.getElementById("mo").value=m;document.getElementById("molbl").textContent=MO[m];document.querySelectorAll(".fl circle").forEach(function(c,i){c.setAttribute("cx",F[i].x+(m-2)*DR[i][0]*2);c.setAttribute("cy",F[i].y+(m-2)*DR[i][1]*2)})}
+function playMap(){var b=document.getElementById("play");if(timer){clearInterval(timer);timer=null;b.textContent="Play";return}b.textContent="Pause";if(+document.getElementById("mo").value>=5)setMonth(0);timer=setInterval(function(){var v=+document.getElementById("mo").value+1;if(v>5){clearInterval(timer);timer=null;b.textContent="Play";return}setMonth(v)},1000)}
+var tb=document.getElementById("tb");
+F.forEach(function(f){var dep=[10,200,1000];dep.forEach(function(d,i){var r=document.createElement("tr");r.innerHTML="<td>"+f.id+"</td><td>"+f.d+"</td><td>"+f.lat+"</td><td>"+f.lon+"</td><td>"+d+"</td><td>"+Math.round(d*1.01)+"</td><td>"+(f.t-[0,9,21][i]).toFixed(1)+"</td><td>"+(f.s-[0,0.2,0.6][i]*-1*-1).toFixed(2)+"</td>";if(f===F[0]||i===0)tb.appendChild(r)})});
+
+var mode="t";
+function line(pts,color){return '<polyline fill="none" stroke="'+color+'" stroke-width="2.5" points="'+pts.join(" ")+'"/>'}
+function dive(){var W=380,H=320,L=68,R=26,Tp=18,B=54,pw=W-L-R,ph=H-Tp-B,g="",pts=[[0,0],[0.25,1000],[9,1000],[9.2,2000],[9.7,0],[10,0]];
+ function X(d){return L+d/10*pw}function Y(q){return Tp+q/2000*ph}
+ [0,2,4,6,8,10].forEach(function(d){g+='<line x1="'+X(d)+'" x2="'+X(d)+'" y1="'+Tp+'" y2="'+(Tp+ph)+'" stroke="var(--line)" stroke-dasharray="2 4"/><text x="'+X(d)+'" y="'+(Tp+ph+16)+'" text-anchor="middle">'+d+'</text>'});
+ [0,500,1000,1500,2000].forEach(function(q){g+='<line x1="'+L+'" x2="'+(L+pw)+'" y1="'+Y(q)+'" y2="'+Y(q)+'" stroke="var(--line)" stroke-dasharray="2 4"/><text x="'+(L-8)+'" y="'+(Y(q)+4)+'" text-anchor="end">'+q+'</text>'});
+ g+='<path d="M'+L+' '+Tp+'V'+(Tp+ph)+'H'+(L+pw)+'" fill="none" stroke="var(--mute)"/>'+line(pts.map(function(q){return X(q[0]).toFixed(1)+","+Y(q[1]).toFixed(1)}),"#7a5cc8");
+ pts.slice(1,5).forEach(function(q){g+='<circle cx="'+X(q[0]).toFixed(1)+'" cy="'+Y(q[1]).toFixed(1)+'" r="4.5" fill="#7a5cc8"/>'});
+ g+='<text class="val" x="'+X(4.5)+'" y="'+(Y(1000)-10)+'" text-anchor="middle">1000 dbar: drifting 9 days</text><text class="val" x="'+(X(9.2)-8)+'" y="'+(Y(2000)-8)+'" text-anchor="end">2000 dbar</text><text class="val" x="'+(X(9.7)-8)+'" y="'+(Y(0)+16)+'" text-anchor="end">Surface</text>';
+ g+='<text x="'+(L+pw/2)+'" y="'+(H-6)+'" text-anchor="middle">Day of cycle</text><text x="12" y="'+(Tp+ph/2)+'" text-anchor="middle" transform="rotate(-90 12 '+(Tp+ph/2)+')">Pressure (dbar)</text>';
+ return g}
+function draw(){
+ var T_=mode==="t",P_=mode==="p",u=T_?"°C":P_?"dbar":"PSU",c=T_?"var(--float)":P_?"#7a5cc8":"var(--teal)",nm=T_?"Temperature":P_?"Pressure":"Salinity";
+ function fv(x){return P_?String(x):x.toFixed(1)}
+ var dv=[0,100,200,400,700,1000,1500,2000],tv=[28.4,27.5,22,14,10,6.5,4.2,3.1],sv=[34.9,35.0,35.3,35.1,34.8,34.7,34.8,34.8];
+ var pv=dv.map(function(d){return Math.round(d*1.01)}),v=T_?tv:P_?pv:sv,mn=T_?0:P_?0:34.6,mx=T_?30:P_?2100:35.4,xt=T_?[0,5,10,15,20,25,30]:P_?[0,500,1000,1500,2000]:[34.6,34.8,35,35.2,35.4];
+ var W=380,H=320,L=68,R=26,Tp=18,B=54,pw=W-L-R,ph=H-Tp-B,h="",pts=[];
+ xt.forEach(function(t){var x=L+(t-mn)/(mx-mn)*pw;h+='<line x1="'+x+'" x2="'+x+'" y1="'+Tp+'" y2="'+(Tp+ph)+'" stroke="var(--line)" stroke-dasharray="2 4"/><text x="'+x+'" y="'+(Tp+ph+16)+'" text-anchor="middle">'+(T_||P_?t:t.toFixed(1))+'</text>'});
+ [0,500,1000,1500,2000].forEach(function(d){var y=Tp+d/2000*ph;h+='<line x1="'+L+'" x2="'+(L+pw)+'" y1="'+y+'" y2="'+y+'" stroke="var(--line)" stroke-dasharray="2 4"/><text x="'+(L-8)+'" y="'+(y+4)+'" text-anchor="end">'+d+' m</text>'});
+ h+='<path d="M'+L+' '+Tp+'V'+(Tp+ph)+'H'+(L+pw)+'" fill="none" stroke="var(--mute)"/>';
+ v.forEach(function(val,i){pts.push((L+(val-mn)/(mx-mn)*pw).toFixed(1)+","+(Tp+dv[i]/2000*ph).toFixed(1))});
+ h+=line(pts,c);
+ v.forEach(function(val,i){var x=L+(val-mn)/(mx-mn)*pw,y=Tp+dv[i]/2000*ph,e=x>L+pw-46;h+='<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="4.5" fill="'+c+'"><title>'+dv[i]+' m: '+fv(val)+' '+u+'</title></circle><text class="val" x="'+(e?x-9:x+9).toFixed(1)+'" y="'+(y+4).toFixed(1)+'" text-anchor="'+(e?"end":"start")+'">'+fv(val)+'</text>'});
+ h+='<text x="'+(L+pw/2)+'" y="'+(H-6)+'" text-anchor="middle">'+nm+' ('+u+')</text><text x="12" y="'+(Tp+ph/2)+'" text-anchor="middle" transform="rotate(-90 12 '+(Tp+ph/2)+')">Depth (m)</text>';
+ document.getElementById("prof").innerHTML=h;
+ var mo=["Jan","Feb","Mar","Apr","May","Jun"],trt=[26.8,27.4,28.4,29.1,29.4,28.7],trs=[34.6,34.7,34.9,35.0,35.1,34.9],tr=T_?trt:trs,lo=T_?26:34.5,hi=T_?30:35.3,yt=T_?[26,27,28,29,30]:[34.5,34.7,34.9,35.1,35.3],p2=[],g="";
+ yt.forEach(function(t){var y=Tp+ph-(t-lo)/(hi-lo)*ph;g+='<line x1="'+L+'" x2="'+(L+pw)+'" y1="'+y+'" y2="'+y+'" stroke="var(--line)" stroke-dasharray="2 4"/><text x="'+(L-8)+'" y="'+(y+4)+'" text-anchor="end">'+(T_?t:t.toFixed(1))+'</text>'});
+ g+='<path d="M'+L+' '+Tp+'V'+(Tp+ph)+'H'+(L+pw)+'" fill="none" stroke="var(--mute)"/>';
+ tr.forEach(function(val,i){var x=L+18+i*((pw-36)/5),y=Tp+ph-(val-lo)/(hi-lo)*ph;p2.push(x.toFixed(1)+","+y.toFixed(1))});
+ g+=line(p2,c);
+ tr.forEach(function(val,i){var x=L+18+i*((pw-36)/5),y=Tp+ph-(val-lo)/(hi-lo)*ph;g+='<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="4.5" fill="'+c+'"><title>'+mo[i]+': '+val.toFixed(1)+' '+u+'</title></circle><text class="val" x="'+x.toFixed(1)+'" y="'+(y-10).toFixed(1)+'" text-anchor="middle">'+val.toFixed(1)+'</text><text x="'+x.toFixed(1)+'" y="'+(Tp+ph+16)+'" text-anchor="middle">'+mo[i]+'</text>'});
+ g+='<text x="'+(L+pw/2)+'" y="'+(H-6)+'" text-anchor="middle">Month (2023)</text><text x="12" y="'+(Tp+ph/2)+'" text-anchor="middle" transform="rotate(-90 12 '+(Tp+ph/2)+')">'+nm+' ('+u+')</text>';
+ document.getElementById("trend").innerHTML=g;
+ var r1="",r2="";
+ dv.forEach(function(d,i){r1+="<tr><td>"+d+"</td><td"+(P_?' class="hl"':"")+">"+pv[i]+"</td><td"+(T_?' class="hl"':"")+">"+tv[i].toFixed(1)+"</td><td"+(T_||P_?"":' class="hl"')+">"+sv[i].toFixed(1)+"</td></tr>"});
+ mo.forEach(function(m,i){r2+="<tr><td>"+m+"</td><td"+(T_?' class="hl"':"")+">"+trt[i].toFixed(1)+"</td><td"+(T_||P_?"":' class="hl"')+">"+trs[i].toFixed(1)+"</td></tr>"});
+ document.getElementById("ptl").textContent=P_?"Pressure vs depth (about 1 dbar per metre)":"Depth profile";document.getElementById("ttl").textContent=P_?"Pressure during one 10-day cycle (sample)":"Surface trend, Jan to Jun 2023";
+ if(P_)document.getElementById("trend").innerHTML=dive();
+ document.getElementById("tprof").innerHTML=r1;document.getElementById("ttrend").innerHTML=r2}
+document.querySelectorAll("#charts .tabs button").forEach(function(b){b.onclick=function(){mode=b.dataset.m;document.querySelectorAll("#charts .tabs button").forEach(function(x){x.setAttribute("aria-pressed",x===b)});draw()}});
+draw();
+</script>
+</body>
+</html>
